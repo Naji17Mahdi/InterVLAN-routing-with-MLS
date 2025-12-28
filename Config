@@ -1,0 +1,29 @@
+Switch>enable 
+Switch#configure 
+Switch(config)#vlan 10
+Switch(config-vlan)#name 10
+Switch(config-vlan)#exit 
+Switch(config)#vlan 20
+Switch(config-vlan)#name 20
+Switch(config-vlan)#exit 
+Switch(config)#interface gigabitEthernet 1/0/1
+Switch(config-if)#switchport mode access 
+Switch(config-if)#switchport access vlan 10
+Switch(config-if)#exit 
+Switch(config)#interface gigabitEthernet 1/0/2
+Switch(config-if)#switchport mode access 
+Switch(config-if)#switchport access vlan 20
+Switch(config-if)#exit 
+Switch(config)#interface vlan 10
+Switch(config-if)#no shutdown 
+Switch(config-if)#ip address 192.168.10.1 255.255.255.0
+Switch(config-if)#exit 
+Switch(config)#interface vlan 20
+Switch(config-if)#no shutdown 
+Switch(config-if)#ip address 192.168.20.1 255.255.255.0
+Switch(config-if)#exit
+Switch(config)#ip routing 
+
+
+IN PC1: 192.168.10.2 255.255.255.0  DG: 192.168.10.1
+IN PC2: 192.168.20.2 255.255.255.0  DG: 192.168.20.1
